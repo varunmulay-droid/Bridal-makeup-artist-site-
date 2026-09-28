@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Request Received — Mitalli Bridal World{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="container narrow text-center">
+    <h1>Your appointment request has been received.</h1>
+    <p>Our team will confirm the slot with you shortly by phone or WhatsApp.</p>
+    <a href="https://wa.me/91{{ settings.phone if settings else '07383099084' }}" target="_blank" class="btn btn-whatsapp">Message Us on WhatsApp</a>
+    <a href="/" class="btn btn-outline">Back to Home</a>
+  </div>
+</section>
+{% endblock %}
