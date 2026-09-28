@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Reviews — Mitalli Bridal World{% endblock %}
+{% block content %}
+<section class="page-header"><div class="container"><h1>Customer Reviews</h1></div></section>
+<section class="section">
+  <div class="container">
+    {% if reviews %}
+    <div class="card-grid">
+      {% for r in reviews %}
+      <div class="review-card">
+        <div class="stars">{{ '★' * r.rating }}{{ '☆' * (5 - r.rating) }}</div>
+        <p>"{{ r.review_text }}"</p>
+        <strong>— {{ r.customer_name }}</strong>
+        {% if r.service %}<div class="review-service">{{ r.service }}</div>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="notice">Reviews will appear here once approved by the studio admin. We only display genuine customer reviews.</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
