@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Services — Mitalli Bridal World{% endblock %}
+{% block content %}
+<section class="page-header"><div class="container"><h1>Our Services</h1></div></section>
+
+{% for category, items in by_category.items() %}
+<section class="section {{ loop.cycle('', 'section-alt') }}">
+  <div class="container">
+    <h2 class="section-title">{{ category }}</h2>
+    <div class="card-grid">
+      {% for s in items %}
+      <div class="service-card">
+        <h3>{{ s.name }}</h3>
+        <p>{{ s.description }}</p>
+        <div class="service-meta">
+          {% if s.duration_minutes %}<span class="duration">{{ s.duration_minutes }} min</span>{% endif %}
+          {% if s.price_type == 'on_request' or not s.price %}
+            <span class="price">On request</span>
+          {% else %}
+            <span class="price">₹{{ '{:,}'.format(s.price) }}{% if s.price_type == 'starting_from' %}+{% endif %}</span>
+          {% endif %}
+        </div>
+        <a href="/booking?service_id={{ s.id }}" class="btn btn-small btn-outline">Enquire</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endfor %}
+{% endblock %}
