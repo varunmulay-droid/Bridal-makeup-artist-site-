@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Gallery — Mitalli Bridal World{% endblock %}
+{% block content %}
+<section class="page-header"><div class="container"><h1>Gallery</h1></div></section>
+<section class="section">
+  <div class="container">
+    <p class="notice">Gallery photos will be added here once genuine business images are provided by the studio.</p>
+    <div class="gallery-filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="bridal">Bridal Makeup</button>
+      <button class="filter-btn" data-filter="hair">Hair</button>
+      <button class="filter-btn" data-filter="makeup">Makeup</button>
+      <button class="filter-btn" data-filter="skincare">Skincare</button>
+      <button class="filter-btn" data-filter="nails">Nails</button>
+      <button class="filter-btn" data-filter="studio">Studio</button>
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Placeholder tiles — replace src with real studio photos in app/static/images/gallery/ -->
+      <div class="gallery-item" data-cat="bridal"><div class="gallery-placeholder">Bridal Makeup</div></div>
+      <div class="gallery-item" data-cat="hair"><div class="gallery-placeholder">Hair</div></div>
+      <div class="gallery-item" data-cat="makeup"><div class="gallery-placeholder">Makeup</div></div>
+      <div class="gallery-item" data-cat="skincare"><div class="gallery-placeholder">Skincare</div></div>
+      <div class="gallery-item" data-cat="nails"><div class="gallery-placeholder">Nails</div></div>
+      <div class="gallery-item" data-cat="studio"><div class="gallery-placeholder">Studio</div></div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.style.display = (filter === 'all' || item.dataset.cat === filter) ? '' : 'none';
+    });
+  });
+});
+</script>
+{% endblock %}
