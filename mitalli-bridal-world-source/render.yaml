@@ -1,0 +1,35 @@
+# Place this file at the ROOT of the GitHub repo.
+# If requirements.txt and app/ are inside a subfolder, set rootDir below to that
+# folder's exact name. If they are already at the repo root, delete the rootDir line.
+
+services:
+  - type: web
+    name: mitalli-bridal-world
+    runtime: python
+    plan: free
+    branch: main
+    rootDir: mitalli-bridal-world-source   # <-- change to your folder name, or delete this line
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mitalli-bridal-db
+          property: connectionString
+
+databases:
+  - name: mitalli-bridal-db
+    plan: free
+    databaseName: mitalli_bridal
+    user: mitalli_admin
