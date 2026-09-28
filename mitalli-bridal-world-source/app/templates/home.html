@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Mitalli Bridal World & Makeover Studio — Bridal Makeup in Sangamner{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <div class="container hero-inner">
+    <h1>Your Beauty. Your Special Day.<br>Your Perfect Look.</h1>
+    <p class="hero-sub">Professional bridal makeup, skincare, hair care and beauty services in Sangamner.</p>
+    <div class="hero-actions">
+      <a href="/booking" class="btn btn-primary">Book Appointment</a>
+      <a href="https://wa.me/91{{ settings.phone if settings else '07383099084' }}" target="_blank" class="btn btn-whatsapp">WhatsApp Us</a>
+      <a href="/services" class="btn btn-outline">View Services</a>
+    </div>
+  </div>
+</section>
+
+<section class="trust-strip">
+  <div class="container trust-grid">
+    <div class="trust-item"><strong>20+ Years</strong><span>of Experience</span></div>
+    <div class="trust-item"><strong>Professional</strong><span>Beauty Services</span></div>
+    <div class="trust-item"><strong>Bridal Makeup</strong><span>Specialists</span></div>
+    <div class="trust-item"><strong>Sangamner</strong><span>Local Studio</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">About Mitalli Bridal World</h2>
+    <p class="section-text">
+      An established beauty and bridal makeup studio in Sangamner, specializing in bridal looks,
+      skincare and personal care with a personalized, professional touch for every customer.
+    </p>
+    <a href="/about" class="link-arrow">Learn More →</a>
+  </div>
+</section>
+
+{% if featured_services %}
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Our Services</h2>
+    <div class="card-grid">
+      {% for s in featured_services %}
+      <div class="service-card">
+        <h3>{{ s.name }}</h3>
+        <p>{{ s.description }}</p>
+        <div class="service-meta">
+          {% if s.price %}
+            <span class="price">{{ '₹%s' % '{:,}'.format(s.price) }}{% if s.price_type == 'starting_from' %}+{% endif %}</span>
+          {% else %}
+            <span class="price">On request</span>
+          {% endif %}
+          <a href="/services" class="btn btn-small">Enquire</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <a href="/services" class="link-arrow">View All Services →</a>
+  </div>
+</section>
+{% endif %}
+
+{% if packages %}
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Bridal Packages</h2>
+    <div class="card-grid packages-grid">
+      {% for p in packages %}
+      <div class="package-card">
+        <h3>{{ p.name }}</h3>
+        {% if p.price %}<div class="package-price">₹{{ '{:,}'.format(p.price) }}{% if p.price_type == 'starting_from' %}+{% endif %}</div>{% endif %}
+        <ul>
+          {% for line in p.inclusions.split('\n') if line.strip() %}
+          <li>{{ line }}</li>
+          {% endfor %}
+        </ul>
+        <a href="/booking" class="btn btn-primary btn-small">Enquire Now</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if reviews %}
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">What Our Customers Say</h2>
+    <div class="card-grid">
+      {% for r in reviews %}
+      <div class="review-card">
+        <div class="stars">{{ '★' * r.rating }}{{ '☆' * (5 - r.rating) }}</div>
+        <p>"{{ r.review_text }}"</p>
+        <strong>— {{ r.customer_name }}</strong>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="cta-band">
+  <div class="container">
+    <h2>Plan Your Perfect Look Today</h2>
+    <a href="/booking" class="btn btn-primary">Book Your Appointment</a>
+  </div>
+</section>
+
+{% endblock %}
