@@ -1,0 +1,14 @@
+{% extends "admin/base_admin.html" %}
+{% block admin_content %}
+<h1>Bridal Packages</h1>
+<p class="notice">Packages stay hidden from the public site until "Published" is checked — confirm price and inclusions with the owner first.</p>
+{% for p in packages %}
+<form method="post" action="/admin/packages/{{ p.id }}/update" class="admin-card-form">
+  <h3>{{ p.name }}</h3>
+  <label>Price (₹)<input type="number" name="price" value="{{ p.price or '' }}"></label>
+  <label>Inclusions (one per line)<textarea name="inclusions" rows="4">{{ p.inclusions }}</textarea></label>
+  <label class="checkbox-label"><input type="checkbox" name="is_published" {% if p.is_published %}checked{% endif %}> Published on website</label>
+  <button type="submit" class="btn btn-primary btn-small">Save</button>
+</form>
+{% endfor %}
+{% endblock %}
