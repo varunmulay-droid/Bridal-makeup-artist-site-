@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Bridal Packages — Mitalli Bridal World{% endblock %}
+{% block content %}
+<section class="page-header"><div class="container"><h1>Bridal Packages</h1><p>Plan your perfect bridal look</p></div></section>
+<section class="section">
+  <div class="container">
+    {% if packages %}
+    <div class="card-grid packages-grid">
+      {% for p in packages %}
+      <div class="package-card">
+        <h3>{{ p.name }}</h3>
+        {% if p.price %}<div class="package-price">₹{{ '{:,}'.format(p.price) }}{% if p.price_type == 'starting_from' %}+{% endif %}</div>{% endif %}
+        <ul>
+          {% for line in p.inclusions.split('\n') if line.strip() %}
+          <li>{{ line }}</li>
+          {% endfor %}
+        </ul>
+        <a href="/booking" class="btn btn-primary btn-small">Enquire Now</a>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>Our bridal packages are being finalized. Please contact us directly for current bridal pricing and inclusions.</p>
+    <a href="/booking" class="btn btn-primary">Enquire About Bridal Makeup</a>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
