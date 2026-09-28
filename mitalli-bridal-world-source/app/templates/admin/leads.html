@@ -1,0 +1,30 @@
+{% extends "admin/base_admin.html" %}
+{% block admin_content %}
+<h1>Leads</h1>
+<table class="admin-table">
+<thead><tr><th>Name</th><th>Phone</th><th>Source</th><th>Interest</th><th>Message</th><th>Status</th><th>Date</th></tr></thead>
+<tbody>
+{% for l in leads %}
+<tr>
+  <td>{{ l.name }}</td>
+  <td>{{ l.phone }}</td>
+  <td>{{ l.source }}</td>
+  <td>{{ l.service_interest or '-' }}</td>
+  <td>{{ l.message or '-' }}</td>
+  <td>
+    <form method="post" action="/admin/leads/{{ l.id }}/status" class="inline-form">
+      <select name="status" onchange="this.form.submit()">
+        {% for st in ['new','contacted','converted','closed'] %}
+        <option value="{{ st }}" {% if l.status == st %}selected{% endif %}>{{ st }}</option>
+        {% endfor %}
+      </select>
+    </form>
+  </td>
+  <td>{{ l.created_at.strftime('%d %b %Y') }}</td>
+</tr>
+{% else %}
+<tr><td colspan="7">No leads yet.</td></tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}
