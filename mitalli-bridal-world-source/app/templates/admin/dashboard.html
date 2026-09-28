@@ -1,0 +1,12 @@
+{% extends "admin/base_admin.html" %}
+{% block admin_content %}
+<h1>Dashboard</h1>
+<p>Welcome, {{ admin_user }}.</p>
+<div class="stat-grid">
+  <div class="stat-card"><span class="stat-num">{{ stats.leads_new }}</span><span>New Leads</span></div>
+  <div class="stat-card"><span class="stat-num">{{ stats.appointments_pending }}</span><span>Pending Appointments</span></div>
+  <div class="stat-card"><span class="stat-num">{{ stats.services_active }}</span><span>Active Services</span></div>
+  <div class="stat-card warn"><span class="stat-num">{{ stats.unconfirmed_settings }}</span><span>Settings Needing Owner Confirmation</span></div>
+</div>
+<p><a href="/admin/settings">Review unconfirmed business info →</a></p>
+{% endblock %}
