@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Contact Us — Mitalli Bridal World{% endblock %}
+{% block content %}
+<section class="page-header"><div class="container"><h1>Contact Us</h1></div></section>
+<section class="section">
+  <div class="container contact-grid">
+    <div class="contact-info">
+      <h2>Mitalli Bridal World</h2>
+      <p>{{ settings.address_line if settings else "Near Mantri Bank, Nashik Road, Sangamner, Maharashtra 422605" }}</p>
+      <p>Phone: {{ settings.phone if settings else "07383099084" }}</p>
+      <p>{{ settings.hours if settings else "Monday–Saturday: 9:30 AM – 6:30 PM" }}</p>
+      <div class="contact-actions">
+        <a href="https://www.google.com/maps/search/?api=1&query=Mitalli+Bridal+World+Sangamner" target="_blank" class="btn btn-outline">Get Directions</a>
+        <a href="tel:{{ settings.phone if settings else '07383099084' }}" class="btn btn-primary">Call Now</a>
+        <a href="https://wa.me/91{{ settings.phone if settings else '07383099084' }}" target="_blank" class="btn btn-whatsapp">WhatsApp</a>
+        <a href="/booking" class="btn btn-outline">Book Appointment</a>
+      </div>
+    </div>
+    <div class="contact-form-wrap">
+      <h2>Send an Enquiry</h2>
+      <form method="post" action="/contact" class="form">
+        <label>Name<input type="text" name="name" required></label>
+        <label>Phone<input type="tel" name="phone" required></label>
+        <label>Message<textarea name="message" rows="4"></textarea></label>
+        <p class="privacy-note">We use your details only to respond to your enquiry and manage appointments.</p>
+        <button type="submit" class="btn btn-primary">Send</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
