@@ -1,0 +1,20 @@
+{% extends "admin/base_admin.html" %}
+{% block admin_content %}
+<h1>Site Settings</h1>
+<p class="notice">Items marked "Needs owner confirmation" were supplied but not yet verified against the public listing — confirm and check the box once correct.</p>
+<table class="admin-table">
+<thead><tr><th>Key</th><th>Value</th><th>Confirmed</th><th></th></tr></thead>
+<tbody>
+{% for s in settings %}
+<tr>
+  <form method="post" action="/admin/settings/{{ s.key }}/update">
+  <td>{{ s.key }}</td>
+  <td><input type="text" name="value" value="{{ s.value or '' }}" style="width:100%"></td>
+  <td><input type="checkbox" name="is_confirmed" {% if s.is_confirmed %}checked{% endif %}></td>
+  <td><button type="submit" class="btn btn-small">Save</button></td>
+  </form>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}
