@@ -1,0 +1,29 @@
+.admin-body { background: #f4f1ee; margin: 0; font-family: 'Poppins', sans-serif; padding-bottom: 0; }
+.admin-shell { display: flex; min-height: 100vh; }
+.admin-sidebar { width: 220px; background: #4f1329; color: #fff; padding: 20px; display: flex; flex-direction: column; }
+.admin-sidebar h2 { color: #fff; font-size: 1.2rem; }
+.admin-sidebar nav { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; flex: 1; }
+.admin-sidebar nav a { color: #f2e6ea; }
+.admin-logout { color: #e8b4bc; margin-top: auto; }
+.admin-main { flex: 1; padding: 30px; overflow-x: auto; }
+
+.stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+@media (min-width: 700px) { .stat-grid { grid-template-columns: repeat(4, 1fr); } }
+.stat-card { background: #fff; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.stat-card.warn { border: 2px solid #b8860b; }
+.stat-num { display: block; font-size: 1.8rem; font-weight: 700; color: #6d1b3c; }
+
+.admin-table { width: 100%; border-collapse: collapse; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.admin-table th, .admin-table td { padding: 10px 12px; border-bottom: 1px solid #eee; text-align: left; font-size: 0.9rem; }
+.admin-table th { background: #f6ece2; }
+.inline-form { display: inline; }
+
+.admin-card-form { background: #fff; padding: 20px; border-radius: 10px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.admin-card-form label { display: block; margin: 10px 0; font-weight: 500; }
+.admin-card-form input[type=text], .admin-card-form input[type=number], .admin-card-form textarea { width: 100%; padding: 8px; margin-top: 4px; }
+.checkbox-label { display: flex !important; align-items: center; gap: 8px; }
+
+.login-body { display: flex; align-items: center; justify-content: center; height: 100vh; background: linear-gradient(135deg, #e8b4bc, #f6ece2); }
+.login-form { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 6px 24px rgba(0,0,0,0.15); width: 320px; display: flex; flex-direction: column; gap: 14px; }
+.login-form input { padding: 10px; border: 1px solid #ddd; border-radius: 6px; width: 100%; margin-top: 4px; }
+.login-form .error { color: #b00020; }
