@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Mitalli Bridal World & Makeover Studio{% endblock %}</title>
+<meta name="description" content="Professional bridal makeup, skincare, hair care and beauty services in Sangamner, Maharashtra.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo">Mitalli <span>Bridal World</span></a>
+    <nav class="main-nav" id="mainNav">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/services">Services</a>
+      <a href="/bridal-packages">Bridal Packages</a>
+      <a href="/gallery">Gallery</a>
+      <a href="/reviews">Reviews</a>
+      <a href="/contact">Contact</a>
+    </nav>
+    <a href="/booking" class="btn btn-primary nav-book-btn">Book Appointment</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h3 class="footer-logo">Mitalli Bridal World</h3>
+      <p>{{ settings.address_line if settings else "Near Mantri Bank, Nashik Road, Sangamner, Maharashtra 422605" }}</p>
+      <p>Phone: {{ settings.phone if settings else "07383099084" }}</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <a href="/services">Services</a>
+      <a href="/bridal-packages">Bridal Packages</a>
+      <a href="/gallery">Gallery</a>
+      <a href="/booking">Book Appointment</a>
+    </div>
+    <div>
+      <h4>Hours</h4>
+      <p>{{ settings.hours if settings else "Monday–Saturday: 9:30 AM – 6:30 PM" }}</p>
+      <p>Sunday: Closed</p>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>&copy; {{ 2026 }} Mitalli Bridal World & Makeover Studio. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Sticky mobile action bar -->
+<div class="sticky-mobile-bar">
+  <a href="tel:{{ settings.phone if settings else '07383099084' }}" class="sticky-btn call">📞 Call</a>
+  <a href="https://wa.me/91{{ (settings.whatsapp_number if settings and settings.whatsapp_number else settings.phone if settings else '07383099084') | replace('+91','') | replace(' ','') }}" target="_blank" class="sticky-btn whatsapp">💬 WhatsApp</a>
+  <a href="/booking" class="sticky-btn book">📅 Book Now</a>
+</div>
+
+<!-- Chatbot widget -->
+<div id="chatbot-widget">
+  <button id="chatbot-toggle" aria-label="Chat with us">💬</button>
+  <div id="chatbot-panel" class="hidden">
+    <div class="chatbot-header">
+      <span>Mitalli Assistant</span>
+      <button id="chatbot-close">✕</button>
+    </div>
+    <div id="chatbot-messages"></div>
+    <form id="chatbot-form">
+      <input type="text" id="chatbot-input" placeholder="Ask about services, prices, timing..." autocomplete="off">
+      <button type="submit">➤</button>
+    </form>
+  </div>
+</div>
+
+<script src="/static/js/main.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>
