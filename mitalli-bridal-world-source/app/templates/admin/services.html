@@ -1,0 +1,27 @@
+{% extends "admin/base_admin.html" %}
+{% block admin_content %}
+<h1>Services</h1>
+<table class="admin-table">
+<thead><tr><th>Category</th><th>Name</th><th>Price</th><th>Price Type</th><th>Active</th><th></th></tr></thead>
+<tbody>
+{% for s in services %}
+<tr>
+  <form method="post" action="/admin/services/{{ s.id }}/update">
+  <td>{{ s.category }}</td>
+  <td>{{ s.name }}</td>
+  <td><input type="number" name="price" value="{{ s.price or '' }}" placeholder="on request"></td>
+  <td>
+    <select name="price_type">
+      {% for pt in ['fixed','starting_from','custom','on_request'] %}
+      <option value="{{ pt }}" {% if s.price_type == pt %}selected{% endif %}>{{ pt }}</option>
+      {% endfor %}
+    </select>
+  </td>
+  <td><input type="checkbox" name="is_active" {% if s.is_active %}checked{% endif %}></td>
+  <td><button type="submit" class="btn btn-small">Save</button></td>
+  </form>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}
