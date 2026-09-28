@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login — Mitalli Bridal World</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body class="admin-body login-body">
+  <form method="post" action="/admin/login" class="login-form">
+    <h1>Admin Login</h1>
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+    <label>Username<input type="text" name="username" required autofocus></label>
+    <label>Password<input type="password" name="password" required></label>
+    <button type="submit" class="btn btn-primary">Log In</button>
+  </form>
+</body>
+</html>
