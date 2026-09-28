@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Book Appointment — Mitalli Bridal World{% endblock %}
+{% block content %}
+<section class="page-header"><div class="container"><h1>Book Appointment</h1></div></section>
+<section class="section">
+  <div class="container narrow">
+    <form method="post" action="/booking" class="form">
+      <label>Name<input type="text" name="customer_name" required></label>
+      <label>Phone<input type="tel" name="phone" required></label>
+      <label>Service
+        <select name="service_id">
+          <option value="">Select a service (optional)</option>
+          {% for s in services %}
+          <option value="{{ s.id }}" {% if request.query_params.get('service_id')|string == s.id|string %}selected{% endif %}>{{ s.category }} — {{ s.name }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <div class="form-row">
+        <label>Preferred Date<input type="date" name="appointment_date"></label>
+        <label>Preferred Time<input type="time" name="preferred_time"></label>
+      </div>
+      <label>Additional Message<textarea name="message" rows="3" placeholder="Tell us more about what you need..."></textarea></label>
+      <p class="privacy-note">Submitting this form sends an appointment request. It does not guarantee the slot —
+      our team will contact you to confirm availability.</p>
+      <button type="submit" class="btn btn-primary">Submit Request</button>
+    </form>
+  </div>
+</section>
+{% endblock %}
