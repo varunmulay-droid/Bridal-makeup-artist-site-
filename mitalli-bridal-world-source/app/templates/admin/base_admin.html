@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Admin — Mitalli Bridal World{% endblock %}</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body class="admin-body">
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <h2>Mitalli Admin</h2>
+    <nav>
+      <a href="/admin">Dashboard</a>
+      <a href="/admin/leads">Leads</a>
+      <a href="/admin/appointments">Appointments</a>
+      <a href="/admin/services">Services</a>
+      <a href="/admin/packages">Bridal Packages</a>
+      <a href="/admin/reviews">Reviews</a>
+      <a href="/admin/settings">Site Settings</a>
+    </nav>
+    <a href="/admin/logout" class="admin-logout">Log Out</a>
+  </aside>
+  <main class="admin-main">
+    {% block admin_content %}{% endblock %}
+  </main>
+</div>
+</body>
+</html>
